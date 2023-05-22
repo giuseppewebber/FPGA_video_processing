@@ -11,4 +11,4 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 
 ## Setup the hardware
 
-## Setup petalinux on Zedboard a start the program
+## Setup petalinux on Zedboard and start the program
