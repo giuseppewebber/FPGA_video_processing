@@ -18,29 +18,29 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 # <strong> Table of Contents </strong>
 1. <a href="#requirementslist">Requirements</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 1.1 <a href="#hwrequirements">Hardware Requirements</a></br>
--> fpga xilinx zedboard
--> cavi usb e adattatore usb "A - micro"
--> webcam
--> cavo ethernet e switch ethernet per debug
--> scheda sd
--> schermo con cavo vga
+-> fpga xilinx zedboard </br>
+-> cavi usb e adattatore usb "A - micro" </br>
+-> webcam </br>
+-> cavo ethernet e switch ethernet per debug </br>
+-> scheda sd </br>
+-> schermo con cavo vga </br>
 &nbsp;&nbsp;&nbsp;&nbsp; 1.2 <a href="#swrequirements">Software Requirements</a></br>
--> vivado 2021.2
--> vitis 2021.2
--> petalinux tools 2021.2
--> ubuntu 16.04
+-> vivado 2021.2 </br>
+-> vitis 2021.2 </br>
+-> petalinux tools 2021.2 </br>
+-> ubuntu 16.04 </br>
 2. <a href="#layoutlist">Project Layout</a></br>
-# image alto livello funzionalità + spiegazione a blocchi
+# image alto livello funzionalità + spiegazione a blocchi </br>
 4. <a href="#startlist">Getting Started - Setup </a></br>
--> spiegazione come da i nostri file far funzionare il progetto
+-> spiegazione come da i nostri file far funzionare il progetto </br>
 6. <a href="#codelist">Project steps</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">PL/a></br>
-4.1.1 spiegazione generale
-4.1.2 spiegazione receive dma
-4.1.3 spiegazione sobel filter
-4.1.4 spiegazione frame generator (somme parziali)
+4.1.1 spiegazione generale </br>
+4.1.2 spiegazione receive dma </br>
+4.1.3 spiegazione sobel filter </br>
+4.1.4 spiegazione frame generator (somme parziali) </br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#pythonadd">PS</a></br>
--> spiegazione capture.c + dmatest.c
+-> spiegazione capture.c + dmatest.c </br>
 5. <a href="#externalslist">Video</a></br>
 6. <a href="#teamlist">Team Members</a></br>
 7. <a href="#referencelist">References</a></br>
