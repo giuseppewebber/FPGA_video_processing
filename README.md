@@ -40,13 +40,14 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 
 <a name="swrequirements"></a>
 ## Software Requirements
-- Vivado 2021.2;
+- [Vivado 2021.2](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html);
 - Vitis 2021.2;
-- PetaLinux tools 2021.2;
+- [PetaLinux tools 2021.2](https://www.xilinx.com/products/design-tools/embedded-software/petalinux-sdk.html);
 - Ubuntu 16.04;
 
 <a name="layoutlist"></a>
-# Project Layout 
+# Project Layout
+![Diagram]
 
 <a name="startlist"></a>
 # Getting Started - Setup 
