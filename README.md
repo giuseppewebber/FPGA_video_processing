@@ -59,7 +59,7 @@ The following steps are needed to make the system work:
 - with a tool like gparted, divide the SD card in three different partitions: a 4MB free space at the beginning, a 500MB FAT32 partition as BOOT and the remaining part in ext4 as rootfs;
 - from the petalinux_files/ directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and unzip the rootfs.tar.gz in the rootfs partition;
 - insert the SD card in the Zedboard, and connect it wih a computer via the COM connection;
-- in the PetaLinux terminal run the command 
+- in the PetaLinux terminal run the commands <pre><code>sh load_hw.sh</code></pre> and <pre><code>sh start.sh</code></pre> and now the system should start.
 
 <a name="projectsteps"></a>
 # Project steps
