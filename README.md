@@ -47,10 +47,17 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 
 <a name="layoutlist"></a>
 # Project Layout
-![Diagram]
+The system is composed of three main parts: webcam, Zedboard and monitor. This parts are connected all together to perform video capturing, filtering and show the results on a monitor via VGA. A switch, the first of the FPGA board, is used to choose which image to display, between the original greyscale image and the filtered image. </br>
+
+![Diagram](readm_img/HighLevelDescription.png) </br>
+
+The project layout is pretty straightforward: Webcam data is captured by the processor through the v4l2 kernel running on PetaLinux. Data saved in memory is then transferred to Programmable Logic (PL) through the use of DMA on an AXI-Stream bus. Finally, the FPGA architecture processes the image, managing the format and applying a Sobel filter to then drive the VGA to display the video. </br>
 
 <a name="startlist"></a>
 # Getting Started - Setup 
+The following steps are needed to make the system work:
+- with a tool like gparted, divide the SD card in three different partitions: a 4MB free space at the beginning, a 500MB FAT32 partition as BOOT and the remaining part in ext4 as rootfs;
+- From the petalinux_files/ directory, copy BOOT.BIN, boot.scr and image.ub in the BOOT partition
 
 <a name="projectsteps"></a>
 # Project steps
