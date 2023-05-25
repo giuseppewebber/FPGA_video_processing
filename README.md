@@ -11,7 +11,7 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
  image alto livello funzionalità + spiegazione a blocchi </br>
 4. <a href="#startlist">Getting Started - Setup </a></br>
 - spiegazione come da i nostri file far funzionare il progetto </br>
-6. <a href="#codelist">Project steps</a></br>
+6. <a href="#projectsteps">Project steps</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">Petalinux</a></br>
  da pensare </br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">PL</a></br>
@@ -44,9 +44,22 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 - Vitis 2021.2;
 - PetaLinux tools 2021.2;
 - Ubuntu 16.04;
-<a name="hwrequirements"></a>
-## Project Layout 
 
-<a name="hwrequirements"></a>
-## Getting Started - Setup 
+<a name="layoutlist"></a>
+# Project Layout 
+
+<a name="startlist"></a>
+# Getting Started - Setup 
+
+<a name="projectsteps"></a>
+# Project steps
+
+<a name="externalslist"></a>
+# Video
+
+<a name="teamlist"></a>
+# Team Members
+
+<a name="referencelist"></a>
+# References
 
