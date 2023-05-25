@@ -93,4 +93,4 @@ The following steps must be carried out on a Linux (we used Ubuntu 16.04) comput
 
 <a name="referencelist"></a>
 # References
-
+Shraddha Y. Swami ,Jayashree S. Awati , (2017 ) " Implementation of Edge Detection Filter using FPGA " , International Journal of Electrical, Electronics and Data Communication (IJEEDC) , pp. 83-87, Volume-5,Issue-6
