@@ -30,11 +30,11 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 -> petalinux tools 2021.2 </br>
 -> ubuntu 16.04 </br>
 2. <a href="#layoutlist">Project Layout</a></br>
-# image alto livello funzionalità + spiegazione a blocchi </br>
+ image alto livello funzionalità + spiegazione a blocchi </br>
 4. <a href="#startlist">Getting Started - Setup </a></br>
 -> spiegazione come da i nostri file far funzionare il progetto </br>
 6. <a href="#codelist">Project steps</a></br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">PL/a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">PL</a></br>
 4.1.1 spiegazione generale </br>
 4.1.2 spiegazione receive dma </br>
 4.1.3 spiegazione sobel filter </br>
