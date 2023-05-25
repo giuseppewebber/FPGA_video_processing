@@ -8,10 +8,10 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 &nbsp;&nbsp;&nbsp;&nbsp; 1.2 <a href="#swrequirements">Software Requirements</a></br>
 
 2. <a href="#layoutlist">Project Layout</a></br>
- image alto livello funzionalità + spiegazione a blocchi </br>
-4. <a href="#startlist">Getting Started - Setup </a></br>
-- spiegazione come da i nostri file far funzionare il progetto </br>
-6. <a href="#projectsteps">Project steps</a></br>
+ 
+3. <a href="#startlist">Getting Started</a></br>
+
+4. <a href="#projectsteps">Project steps</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">Petalinux</a></br>
  da pensare </br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#ccsfsm">PL</a></br>
@@ -54,12 +54,16 @@ The system is composed of three main parts: webcam, Zedboard and monitor. This p
 The project layout is pretty straightforward: Webcam data is captured by the processor through the v4l2 kernel running on PetaLinux. Data saved in memory is then transferred to Programmable Logic (PL) through the use of DMA on an AXI-Stream bus. Finally, the FPGA architecture processes the image, managing the format and applying a Sobel filter to then drive the VGA to display the video. </br>
 
 <a name="startlist"></a>
-# Getting Started - Setup 
+# Getting Started
 The following steps are needed to make the system work:
 - with a tool like gparted, divide the SD card in three different partitions: a 4MB free space at the beginning, a 500MB FAT32 partition as BOOT and the remaining part in ext4 as rootfs;
 - from the petalinux_files/ directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and unzip the rootfs.tar.gz in the rootfs partition;
 - insert the SD card in the Zedboard, and connect it wih a computer via the COM connection;
-- in the PetaLinux terminal run the commands <pre><code>sh load_hw.sh</code></pre> and <pre><code>sh start.sh</code></pre> and now the system should start.
+- connect the Webcam and the monitor to the Zedboard;
+- in the PetaLinux terminal run the commands <pre><code>sh load_hw.sh</code></pre> and <pre><code>sh start.sh</code></pre> and the system should start;
+- you might have to use the last switch on the Zedboard to set the right video visualization, depending on the video encoding of our Webcam.
+
+AGGIUNGERE IMMAGINE COLLEGAMENTI SCHEDA
 
 <a name="projectsteps"></a>
 # Project steps
