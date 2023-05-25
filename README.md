@@ -43,6 +43,8 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 - Vitis 2021.2;
 - PetaLinux tools 2021.2;
 - Ubuntu 16.04;
+<a name="hwrequirements"></a>
+## Project Layout 
 
 <a name="hwrequirements"></a>
 ## Getting Started - Setup 
