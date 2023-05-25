@@ -25,8 +25,9 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 5. <a href="#externalslist">Video</a></br>
 6. <a href="#teamlist">Team Members</a></br>
 7. <a href="#referencelist">References</a></br>
-8. 
 
+<a name="requirementslist"></a>
+# Requirements
 <a name="hwrequirements"></a>
 ## Hardware Requirements
 
