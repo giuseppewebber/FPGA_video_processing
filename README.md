@@ -74,7 +74,7 @@ The diagram shows the architecture we have developed where we can identify the m
 - ZYNQ processor (processing_system7_0);
 - Axi DMA (axi_dma_0);
 - image processing block composed of receive dma (recive_dma_0) and sobel filter (SobelFilter_0); 
-- image visualization block composed of frame generator(frame_generator_0) and vga driver (vga_0);
+- image visualization block composed of frame generator (frame_generator_0) and vga driver (vga_0);
 - memory blocks (blk_mem_gen_0, blk_mem_gen_1, blk_mem_gen_2).
 
 Translated with www.DeepL.com/Translator (free version)
