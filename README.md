@@ -81,6 +81,9 @@ The data flow starts from the **processor** which via embedded code handles the 
 
 Three memory blocks necessary to save partial results after each processing are provided in the architecture so as to simplify synchronization and management of the image shown on the screen. To avoid concurrency problems between the "SobelFilter" block and "FrameGenerator" block, Memory Block 2 is added, allowing access to the original image at any time. <\br>
 
+### Receive Dma block </br>
+This block handles the format of the incoming data from the dma. On input we get a 32 bits data which corresponds to two pixels encoded in YUY2. From this bit array the two bytes related to brightness are extracted where only the most significant 4 bits of each byte are actually transferred. To handle the different order of the input bytes due to variations in the image format, a switch has been added to allow the choice between two different configurations. The data is then passed out in groups of two pixels encoded in greyscale 4 bits (one byte). </br>
+
 
 ## Petalinux build
 The following steps must be carried out on a Linux (we used Ubuntu 16.04) computer. 
