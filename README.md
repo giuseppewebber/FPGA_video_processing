@@ -141,6 +141,9 @@ void transfer_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical
 ```
                   
 ### initdma()
+This function initializes the DMA and takes care of mapping via "mmap()" the control registers and the memory area used for data transfer.
+In order to access the physical addresses of the memory, we use /dev/mem to create a "file descriptor" that allows the memory to be accessed from PetaLinux.
+We then map the physical addresses of the DMA given in Vivado's "Address Editor" so they can be used by our application.
 ```
 void initdma(){
         printf("Running DMA transfer.\n");
@@ -165,8 +168,21 @@ void initdma(){
         write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, ENABLE_ALL_IRQ);
 }
 ```
-              
- volatile
+                 
+### process_image()
+"process_image" is the main function for code operation. In this part of the code we copy data from the webcam registers, previously mapped in memory, to the memory locations used for transfer mapped in the "init_dma()" function. 
+We point out the use of the "volatile" attribute to prevent the compiler from optimizing the use of memory allocated for saving the image.
+```
+static void process_image(volatile const void *p, int size){
+    int i = 0;
+    int j = size/4;
+
+        for (i = 0; i < j; i++){
+            virtual_src_addr[i] = *(((volatile unsigned int *)p)+i);
+        }
+        transfer_dma(dma_virtual_addr, DMA_SRC_ADDRESS, size);
+}        
+```
 
 <a name="externalslist"></a>
 # Video
