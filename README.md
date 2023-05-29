@@ -81,8 +81,14 @@ The data flow starts from the **processor** which via embedded code handles the 
 
 Three memory blocks necessary to save partial results after each processing are provided in the architecture so as to simplify synchronization and management of the image shown on the screen. To avoid concurrency problems between the "SobelFilter" block and "FrameGenerator" block, Memory Block 2 is added, allowing access to the original image at any time. <\br>
 
-### Receive Dma block </br>
+### Receive Dma block
 This block handles the format of the incoming data from the dma. On input we get a 32 bits data which corresponds to two pixels encoded in YUY2. From this bit array the two bytes related to brightness are extracted where only the most significant 4 bits of each byte are actually transferred. To handle the different order of the input bytes due to variations in the image format, a switch has been added to allow the choice between two different configurations. Data is then passed out in groups of two pixels encoded in greyscale 4 bits (one byte). </br>
+
+### Sobel filter
+This is the block designated to implement the Sobel filter. Two 3×3 kernels, that is, two convolution matrices, are applied to the original image to compute approximate values of the horizontal and vertical gradients. From the original image, 2 rows are stored in 2 arrays, and a third array is used to store an additional 3 pixels. In this way, by simply shifting the three arrays by one pixel, one always manages to have in the first three array positions the correct pixels on which to apply the kernel.
+Again the image is stored in a BRAM for the next step.
+
+### Frame generator block
 
 
 ## Petalinux build
