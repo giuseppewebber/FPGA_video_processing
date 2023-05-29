@@ -102,7 +102,19 @@ The following steps must be carried out on a Linux (we used Ubuntu 16.04) comput
 - generate the PetaLinux image with <code>petalinux-build -c device-tree</code> and <code>petalinux-build</code>;
 - use <code>petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/BOOT.bit --u-boot</code> to generate the BOOT.BIN file.
  
- for more detailed instructions follow LINK A GUIDA
+ for more detailed instructions follow LINK A GUIDA <\br>
+ 
+## Code for Zynq processor
+The acquisition and transfer of the image into the PS are handled by the "webcam_to_PL.c" code. Through the use of the v4l2 kernel, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the DMA driver.
+The code is run on PetaLinux, a Linux-based operating system for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an abstraction layer that complicates memory address management and communication with the PL.
+The code we implemented takes inspiration from two different examples found online, "capture.c"[link] for the proper use of v4l2 and "dmatest.c"[link] for the DMA driver, which we have included in this directory. <\br>
+Next are some sections of code that play an important role in the operation of the system. <\br>
+
+ 
+ 
+ transfer lenght
+ indirizzi
+ volatile
 
 <a name="externalslist"></a>
 # Video
@@ -114,4 +126,4 @@ The following steps must be carried out on a Linux (we used Ubuntu 16.04) comput
 
 <a name="referencelist"></a>
 # References
-Shraddha Y. Swami ,Jayashree S. Awati , (2017 ) " Implementation of Edge Detection Filter using FPGA " , International Journal of Electrical, Electronics and Data Communication (IJEEDC) , pp. 83-87, Volume-5,Issue-6
+Shraddha Y. Swami, Jayashree S. Awati, (2017) " Implementation of Edge Detection Filter using FPGA ", International Journal of Electrical, Electronics and Data Communication (IJEEDC), pp. 83-87, Volume-5, Issue-6
