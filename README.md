@@ -75,11 +75,11 @@ The diagram shows the architecture we have developed where we can identify the m
 - Axi DMA (*axi_dma_0*);
 - image processing block composed of receive dma (*recive_dma_0*) and sobel filter (*SobelFilter_0*); 
 - image visualization block composed of frame generator (*frame_generator_0*) and vga driver (*vga_0*);
-- memory blocks (*blk_mem_gen_0, blk_mem_gen_1, blk_mem_gen_2*). </br>
-</br>
+- memory blocks (*blk_mem_gen_0, blk_mem_gen_1, blk_mem_gen_2*).
+
 The data flow starts from the **processor** which via embedded code handles the dma and transfers the image via AXI-Stream to the **receive dma** block.  Here the data is converted from the YUY2 webcam format to 4 bits greyscale. Then the image is saved and passed to the next block that implements the **Sobel filter**, the image processing core that through an algorithm manages to highlight the edges of a figure within the image. Finally, the frame generator block is responsible for creating the frame to be sent to the VGA driver after applying a frame that indicates the recognition of a figure, handling synchronization. </br>
 
-Three memory blocks necessary to save partial results after each processing are provided in the architecture so as to simplify synchronization and management of the image shown on the screen. To avoid concurrency problems between the "SobelFilter" block and "FrameGenerator" block, Memory Block 2 is added, allowing access to the original image at any instant.
+Three memory blocks necessary to save partial results after each processing are provided in the architecture so as to simplify synchronization and management of the image shown on the screen. To avoid concurrency problems between the "SobelFilter" block and "FrameGenerator" block, Memory Block 2 is added, allowing access to the original image at any time.
 
 
 ## Petalinux build
