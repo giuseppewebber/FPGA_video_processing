@@ -117,7 +117,7 @@ begin
     end if;
 end process;
 
-
+-- calcolo moltiplicazione matrice * immagine
 calculations: process (CLK)
 -- inizializzo le variabili in modo da fare tutto il calcolo in un solo ciclo di clock
     variable v_edge_positive : natural range 60 downto 0 := 0;
