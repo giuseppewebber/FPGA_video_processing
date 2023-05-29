@@ -89,7 +89,8 @@ This is the block designated to implement the Sobel filter. Two 3×3 kernels, th
 Again the image is stored in a BRAM for the next step.
 
 ### Frame generator block
-
+In this block the partial sums of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box.
+Timing for frame generation in sync with the VGA driver is also handled, which using the "on state" signal enables or disables image transmission.
 
 ## Petalinux build
 The following steps must be carried out on a Linux (we used Ubuntu 16.04) computer. 
