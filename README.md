@@ -79,7 +79,7 @@ The following steps must be carried out on a Linux (we used Ubuntu 16.04) comput
 - GUARDARE PETALINUX CONFIG 
  
 - generate the PetaLinux image with <code>petalinux-build -c device-tree</code> and <code>petalinux-build</code>;
-- use <code>petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/BOOT.bit --u-boot<code> to generate the BOOT.BIN file.
+- use <code>petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/BOOT.bit --u-boot</code> to generate the BOOT.BIN file.
  
  for more detailed instructions follow LINK A GUIDA
 
