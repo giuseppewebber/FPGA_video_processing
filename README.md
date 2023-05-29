@@ -57,7 +57,7 @@ The project layout is pretty straightforward: Webcam data is captured by the pro
 # Getting Started
 The following steps are needed to make the system work:
 - with a tool like gparted, divide the SD card in three different partitions: a 4MB free space at the beginning, a 500MB FAT32 partition as BOOT and the remaining part in ext4 as rootfs;
-- from the petalinux_files/ directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and unzip the rootfs.tar.gz in the rootfs partition;
+- from the petalinux_files/ directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing) unzip the rootfs.tar.gz in the rootfs partition;
 - insert the SD card in the Zedboard, and connect it wih a computer via the COM connection;
 - connect the Webcam and the monitor to the Zedboard;
 - in the PetaLinux terminal run the commands <code>sh load_hw.sh</code> and <code>sh start.sh</code> and the system should start;
