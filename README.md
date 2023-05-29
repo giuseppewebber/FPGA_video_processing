@@ -111,9 +111,61 @@ The code we implemented takes inspiration from two different examples found onli
 Next are some sections of code that play an important role in the operation of the system. <\br>
 
  
- 
- transfer lenght
- indirizzi
+### transfer_dma()
+In this section we deal with data transfer via DMA. Data is divided into N blocks of size equal to "transfer_lenght," defined by choosing a value smaller than the max transfer lenght of the DMA (equal to 16384) and that divide the image into an integer N number. 
+N transfers are then performed for each frame.
+
+```
+void transfer_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical_address, unsigned int size){
+    // divide image in N blocks to stream less than maximum bytes number
+    int i = 0;
+    int N = (int)(size/transfer_lenght);
+
+    for(i=0; i<N; i++){
+        //  Halt the DMA
+        write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, HALT_DMA);
+
+        //  Writing source address of the data from MM2S in DDR
+        write_dma(dma_virtual_addr, MM2S_SRC_ADDRESS_REGISTER, (phisical_address+(i*transfert_lenght)));
+
+        //  Run the MM2S channel
+        write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, RUN_DMA);
+
+        //  Writing MM2S transfer length of transfert_lenght  bytes
+        write_dma(dma_virtual_addr, MM2S_TRNSFR_LENGTH_REGISTER, transfert_lenght);
+
+        //  Waiting for MM2S synchronization
+        dma_mm2s_sync(dma_virtual_addr);
+    }
+}
+```
+                  
+### initdma()
+```
+void initdma(){
+        printf("Running DMA transfer.\n");
+
+        //  Opening a character device file of the Zynq's DDR memory with aligned page
+        int ddr_memory = open("/dev/mem", O_RDWR | O_SYNC);
+        unsigned pagesize = sysconf(_SC_PAGESIZE);
+
+        //  Memory map the address of the DMA AXI IP via its AXI lite control interface register block
+        dma_virtual_addr = mmap(NULL, pagesize, PROT_READ | PROT_WRITE, MAP_SHARED, ddr_memory, 0x40400000);
+
+        //  Memory map the MM2S source address register block
+        virtual_src_addr  = mmap(NULL, imageSize*2, PROT_READ | PROT_WRITE, MAP_SHARED, ddr_memory, 0x0e000000);
+
+        //  Reset the DMA
+        write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, RESET_DMA);
+
+        //  Halt the DMA
+        write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, HALT_DMA);
+
+        //  Enable all interrupts
+        write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, ENABLE_ALL_IRQ);
+}
+```
+              
  volatile
 
 <a name="externalslist"></a>
