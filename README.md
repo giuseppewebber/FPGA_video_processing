@@ -14,14 +14,10 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 4. <a href="#projectsteps">Project steps</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#">Petalinux</a></br>
  da pensare </br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#">PL</a></br>
-prova </br>
-<!-- 4.1.1 spiegazione generale </br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#">PL</a></br> <!-- 4.1.1 spiegazione generale </br>
 4.1.2 spiegazione receive dma </br>
 4.1.3 spiegazione sobel filter </br>
-4.1.4 spiegazione frame generator (somme parziali) </br> -->  
-&nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#">PS</a></br>
-<!-- - spiegazione capture.c + dmatest.c </br> -->
+4.1.4 spiegazione frame generator (somme parziali) </br> --> &nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#">PS</a></br> <!-- - spiegazione capture.c + dmatest.c </br> -->
 debug </br>
 5. <a href="#externalslist">Video</a></br>
 6. <a href="#teamlist">Team Members</a></br>
