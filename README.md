@@ -185,7 +185,7 @@ static void process_image(volatile const void *p, int size){
 ```
 
 <a name="externalslist"></a>
-# Video
+# Video #da finire
 
 <a name="teamlist"></a>
 ## Team Members
@@ -195,3 +195,10 @@ static void process_image(volatile const void *p, int size){
 <a name="referencelist"></a>
 # References
 Shraddha Y. Swami, Jayashree S. Awati, (2017) " Implementation of Edge Detection Filter using FPGA ", International Journal of Electrical, Electronics and Data Communication (IJEEDC), pp. 83-87, Volume-5, Issue-6
+
+# da finire:
+- video
+- petalinux build
+- photo dei cavi
+- link interni (references) e link esterni
+- risorse
