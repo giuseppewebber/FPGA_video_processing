@@ -9,9 +9,9 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 2. <a href="#layoutlist">Project Layout</a></br>
 3. <a href="#startlist">Getting Started</a></br>
 4. <a href="#projectsteps">Project steps</a></br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#vivadohw">PL</a></br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#petalinux">Petalinux</a></br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#vitissw">PS</a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#vivadohw">Vivado Hardware Design</a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#petalinux">PetaLinux build</a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#vitissw">Code for Zynq processor</a></br>
 5. <a href="#externalslist">Video</a></br>
 6. <a href="#teamlist">Team Members</a></br>
 7. <a href="#referencelist">References</a></br>
@@ -84,7 +84,7 @@ In this block the partial sums of the filtered image are calculated and used to 
 Timing for frame generation in sync with the VGA driver is also handled, which using the ***on state*** signal enables or disables image transmission.
 
 <a name="petalinux"></a>
-## **Petalinux build**
+## **PetaLinux build**
 The following steps must be carried out on a Linux (we used Ubuntu 16.04) computer. 
 <!-- da aggiungere che siamo partiti dalle guide e poi ci siamo assicurati che queste opzioni fossero attive -->
 - Install PetaLinux Tools;
@@ -129,12 +129,7 @@ activate:
 
 - activate Device Drivers -> Graphics Support ->  Xilinx DRM KMS Driver
 - activate Device Drivers -> FPGA Configuration Framework -> Xilinx Zynq FPGA
-- activate
-- activate
-- activate
-
-
-
+ 
 - petalinux-config -c rootfs
 - activate  Filesystem Packages  → multimedia  → gstreamer1.0
 - activate  Filesystem Packages  → x11  → base  → libdrm
