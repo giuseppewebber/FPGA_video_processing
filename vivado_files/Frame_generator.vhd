@@ -58,15 +58,15 @@ signal column_counter : unsigned(9 downto 0) := "0000000010";
     -- lines counter
 signal line_counter : unsigned(8 downto 0) := "000000000";
 
-    -- start l'elaborazione dei delle figura
+    -- start l'elaborazione dei pixels dell'immagine
 signal start : std_logic := '0';
 
-    -- indice delle colonne di limite
+    -- indice delle colonne del riquadro
 signal sx_column : unsigned(9 downto 0) := "0000000000";
 signal dx_column : unsigned(9 downto 0) := "0000010000";
 signal buffered_column : unsigned (9 downto 0);
 
--- indice delle righe di limite
+-- indice delle righe del riquadro
 signal up_line : unsigned(8 downto 0) := "000000000";
 signal down_line : unsigned(8 downto 0) := "000100000";
 
