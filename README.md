@@ -6,19 +6,12 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 1. <a href="#requirementslist">Requirements</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 1.1 <a href="#hwrequirements">Hardware Requirements</a></br>
 &nbsp;&nbsp;&nbsp;&nbsp; 1.2 <a href="#swrequirements">Software Requirements</a></br>
-
 2. <a href="#layoutlist">Project Layout</a></br>
- 
 3. <a href="#startlist">Getting Started</a></br>
-
 4. <a href="#projectsteps">Project steps</a></br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#">Petalinux</a></br>
- da pensare </br>
-&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#">PL</a></br> <!-- 4.1.1 spiegazione generale </br>
-4.1.2 spiegazione receive dma </br>
-4.1.3 spiegazione sobel filter </br>
-4.1.4 spiegazione frame generator (somme parziali) </br> --> &nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#">PS</a></br> <!-- - spiegazione capture.c + dmatest.c </br> -->
-debug </br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.2 <a href="#vivadohw">PL</a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.1 <a href="#petalinux">Petalinux</a></br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4.3 <a href="#vitissw">PS</a></br>
 5. <a href="#externalslist">Video</a></br>
 6. <a href="#teamlist">Team Members</a></br>
 7. <a href="#referencelist">References</a></br>
@@ -65,6 +58,7 @@ AGGIUNGERE IMMAGINE COLLEGAMENTI SCHEDA
 <a name="projectsteps"></a>
 # **Project steps**
 The following part explains our steps to develop the system from scratch.
+<a name="vivadohw"></a>
 ## **Vivado Hardware Design**
 ![Diagram](readm_img/Block_Diagram.png) </br>
 The diagram shows the architecture we have developed where we can identify the main blocks:
@@ -89,7 +83,8 @@ Again the image is stored in a BRAM for the next step.
 In this block the partial sums of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box.
 Timing for frame generation in sync with the VGA driver is also handled, which using the ***on state*** signal enables or disables image transmission.
 
-## **Petalinux build** #da finire
+<a name="petalinux"></a>
+## **Petalinux build**
 The following steps must be carried out on a Linux (we used Ubuntu 16.04) computer. 
 <!-- da aggiungere che siamo partiti dalle guide e poi ci siamo assicurati che queste opzioni fossero attive -->
 - Install PetaLinux Tools;
@@ -179,7 +174,9 @@ all:
  cp /media/design_1_wrapper.bit.bin /lib/firmware/
  echo design_1_wrapper.bit.bin > /sys/class/fpga_manager/fpga0/firmware
 ``` 
-## **Code for Zynq processor** #da finire
+ 
+<a name="vitissw"></a>
+## **Code for Zynq processor**
 The acquisition and transfer of the image into the PS are handled by the [**webcam_to_PL.c**](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the v4l2 kernel, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the DMA driver.
 The code is run on PetaLinux, a Linux-based operating system for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an abstraction layer that complicates memory address management and communication with the PL.
 The code we implemented takes inspiration from two different examples found online, ***capture.c*** ([link]()) for the proper use of v4l2 and ***dmatest.c*** ([link]()) for the DMA driver, which we have included in this directory. </br>
