@@ -70,7 +70,7 @@
 #define ENABLE_ALL_IRQ              0x00007000
 
 #define imageSize 640*480
-#define transfert_lenght 15360
+#define transfer_lenght 15360
 #define DMA_SRC_ADDRESS 0x0e000000 // check on vivado address editor
 
 
@@ -139,23 +139,23 @@ void initdma(){
         write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, ENABLE_ALL_IRQ);
 }
 
-void transfert_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical_address, unsigned int size){
+void transfer_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical_address, unsigned int size){
 // divide image in N blocks to stream less than maximum bytes number
 	int i = 0;
-	int N = (int)(size/transfert_lenght);
+	int N = (int)(size/transfer_lenght);
 
 	for(i=0; i<N; i++){
 //	Halt the DMA
 		write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, HALT_DMA);
 
 //	Writing source address of the data from MM2S in DDR
-		write_dma(dma_virtual_addr, MM2S_SRC_ADDRESS_REGISTER, (phisical_address+(i*transfert_lenght)));
+		write_dma(dma_virtual_addr, MM2S_SRC_ADDRESS_REGISTER, (phisical_address+(i*transfer_lenght)));
 
 //	Run the MM2S channel
 		write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, RUN_DMA);
 
-//	Writing MM2S transfer length of transfert_lenght  bytes
-		write_dma(dma_virtual_addr, MM2S_TRNSFR_LENGTH_REGISTER, transfert_lenght);
+//	Writing MM2S transfer length of transfer_lenght  bytes
+		write_dma(dma_virtual_addr, MM2S_TRNSFR_LENGTH_REGISTER, transfer_lenght);
 
 //	Waiting for MM2S synchronization
 		dma_mm2s_sync(dma_virtual_addr);
@@ -189,7 +189,7 @@ static void process_image(volatile const void *p, int size){
                 virtual_src_addr[i] = *(((volatile unsigned int *)p)+i);
         }
 
-        transfert_dma(dma_virtual_addr, DMA_SRC_ADDRESS, size);
+        transfer_dma(dma_virtual_addr, DMA_SRC_ADDRESS, size);
 
 }
 
