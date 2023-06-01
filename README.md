@@ -73,15 +73,15 @@ The data flow starts from the *processor* which via embedded code handles the DM
 Three *memory blocks* necessary to save partial results after each processing are provided in the architecture so as to simplify synchronization and management of the image shown on the screen. To avoid concurrency problems between the *Sobel filter* block and *frame generator* block, *memory block 2* is added, allowing access to the original image at any time. </br>
 
 ### **Receive DMA block**
-This block handles the format of the incoming data from the DMA. On input we get a 32 bits data which corresponds to two pixels encoded in YUY2. From this bit array the two bytes related to brightness are extracted and then only the most significant 4 bits of each byte are actually transferred. To handle the different order of the input bytes due to variations in the image format, a switch has been added to allow the choice between two different configurations. Data is then passed out in groups of two pixels encoded in greyscale 4 bits (one byte total). </br>
+This block handles the format of the incoming data from the DMA. On input we get a 32 bits data which corresponds to two pixels encoded in **YUY2**. From this bit array the two bytes related to **brightness** are extracted and then only the most significant 4 bits of each byte are actually transferred. To handle the different order of the input bytes due to variations in the image format, a switch has been added to allow the choice between two different configurations. Data is then passed out in groups of two pixels encoded in **greyscale 4 bits** (one byte total). </br>
 
 ### **Sobel filter**
-This is the block designated to implement the Sobel filter. Two 3×3 kernels, that is, two convolution matrices, are applied to the original image to compute approximate values of the horizontal and vertical gradients. From the original image, 2 rows are stored in 2 arrays, and a third array is used to store an additional 3 pixels. In this way, by simply shifting the three arrays by one pixel, one always manages to have in the first three array positions the correct pixels on which to apply the kernel.
-Again the image is stored in a BRAM for the next step.
+This is the block designated to implement the Sobel filter. Two **3×3 kernels**, or convolution matrices, are applied to the original image to compute approximate values of the **horizontal and vertical gradients**. From the original image, 2 rows are stored in 2 arrays, and a third array is used to store an additional 3 pixels. In this way, by simply shifting the three arrays by one pixel, one always manages to have in the first three array positions the correct pixels on which to apply the kernel. Again the image is stored in a BRAM for the next step.
+
+<!-- IMMAGINE ARRAY SOBEL-->
 
 ### **Frame generator block**
-In this block the partial sums of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box.
-Timing for frame generation in sync with the VGA driver is also handled, which using the ***on state*** signal enables or disables image transmission.
+In this block the **partial sums** of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box. Timing for frame generation in sync with the VGA driver is also handled, which using the *on state* signal enables or disables image transmission.
 
 <a name="petalinux"></a>
 ## **PetaLinux build**
