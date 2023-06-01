@@ -158,7 +158,27 @@ activate:
 - generate the PetaLinux image with <code>petalinux-build -c device-tree</code> and <code>petalinux-build</code>;
 - use <code>petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/BOOT.bit --u-boot</code> to generate the BOOT.BIN file.
 for more detailed instructions follow LINK A GUIDA <br>
- 
+### **Update PL from petalinux workspace**
+- Get the bitstream file (.bit) from Vivado 
+- From a linux environment with Vivado installed run in a command shell <code> $ source <vivado_install_dir>/settings64.sh </code>
+- Create a txt file with the following content: 
+``` txt
+all:
+{
+    ./<Bitstream_name>.bit
+}
+```
+- Change the name of the file from \<name>.txt to \<name>.bif
+- Run in command shell at the same directory of the \<name>.bif <code> bootgen -image <Input_file>.bif -arch zynq -process_bitstream bin -o ./<Output_file>.bin -w </code> 
+- Copy \<name>.bit.bin file just created in the BOOT partition on the SD card
+- Turn on Petalinux on the FPGA board and run the following commands
+``` bash
+ echo 0 > /sys/class/fpga_manager/fpga0/flags
+ mkdir -p /lib/firmware
+ mount /dev/mmcblk0p1 /media/
+ cp /media/design_1_wrapper.bit.bin /lib/firmware/
+ echo design_1_wrapper.bit.bin > /sys/class/fpga_manager/fpga0/firmware
+``` 
 ## **Code for Zynq processor** #da finire
 The acquisition and transfer of the image into the PS are handled by the [**webcam_to_PL.c**](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the v4l2 kernel, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the DMA driver.
 The code is run on PetaLinux, a Linux-based operating system for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an abstraction layer that complicates memory address management and communication with the PL.
@@ -259,3 +279,12 @@ Shraddha Y. Swami, Jayashree S. Awati, (2017) " Implementation of Edge Detection
 - photo dei cavi
 - link interni (references) e link esterni + debug
 - risorse
+
+
+# Link
+- [YUY format](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/pixfmt-yuyv.html)
+- [YUV format 2](https://linuxtv.org/downloads/v4l-dvb-apis-new/userspace-api/v4l/pixfmt-packed-yuv.html?highlight=v4l2_pix_fmt_yuyv)
+- [Petalinux Guide - 1](https://medium.com/developments-and-implementations-on-zynq-7000-ap/install-ubuntu-16-04-lts-on-zynq-zc702-using-petalinux-2016-4-e1da902eaff7)
+- [Petalinux Guide - 2](https://medium.com/developments-and-implementations-on-zynq-7000-ap/interfacing-a-usb-webcam-and-enable-usb-tethering-on-zynq-7000-ap-soc-running-linux-1ba6d836749d)
+- [Petalinux Guide - 3](https://enes-goktas.medium.com/install-and-run-ubuntu-20-04-on-zynq-7000-soc-zc706-evaluation-board-c5fef2423c98)
+- [Load PL from Petalinux Workspace](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming)
