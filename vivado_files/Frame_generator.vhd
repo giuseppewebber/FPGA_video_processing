@@ -2,35 +2,35 @@ library ieee;
 use ieee.std_logic_1164.all;                                                              
 use ieee.numeric_std.all;                                                                                                 
 
-entity frame_generator is port (     
-
-    CLK                 : in std_logic;    
-   
-    --vga signals  
-    active              : in std_logic;
+entity frame_generator is port ( 
+    CLK      : in std_logic;    
+                                                                                                  
     r_out               : out std_logic_vector(3 downto 0);
     g_out               : out std_logic_vector(3 downto 0);
     b_out               : out std_logic_vector(3 downto 0);
-
+    
+    active : in std_logic;
+    
     --immagine filtrata
-    in_pixel            : in std_logic_vector(3 downto 0);
-    enable_b            : out std_logic;
-    add_r               : out unsigned(18 downto 0);
+    in_pixel: in std_logic_vector(3 downto 0);
+    enable_b : out std_logic;
+    add_r : out unsigned(18 downto 0);
     
     -- immagine non filtrata
-    in_pixel_nfiltered  : in std_logic_vector(3 downto 0);
-    enable_b_nfiltered  : out std_logic;
-    add_r_nfiltered     : out unsigned(18 downto 0);
+    in_pixel_nfiltered: in std_logic_vector(3 downto 0);
+    enable_b_nfiltered : out std_logic;
+    add_r_nfiltered : out unsigned(18 downto 0);
     
     --selezione per vedere immagine reale o filtrata
-    switch              : in std_logic
+    switch : in std_logic
+    
       );
 end frame_generator;
 
 architecture impl of frame_generator is
 
 -- gestione del clock in modo che sia corretto per la vga
-signal clk_divider     : unsigned(1  downto 0) := (others => '0');
+signal clk_divider        : unsigned(1  downto 0) := (others => '0');
 signal active_buffered : std_logic;
 
 --typedef memoria
@@ -39,8 +39,8 @@ type V_SUM is array (639 downto 0) of std_logic_vector (14 downto 0);
 type H_SUM is array (479 downto 0) of std_logic_vector (15 downto 0);
 
 signal pixels : PIXEL := (others => (others => '0'));
---mask for object detection
-signal blue_pixel : std_logic_vector(3 downto 0) := (others => '0');
+--mask for object detection 
+signal red_pixel : std_logic_vector(3 downto 0) := (others => '0');
 
 signal partial_vertical_sum : V_SUM := (others => (others => '0'));
 signal partial_horizontal_sum : H_SUM := (others => (others => '0'));
@@ -48,29 +48,27 @@ signal partial_horizontal_sum : H_SUM := (others => (others => '0'));
 
 --trasfermento pixel
     -- Counter normal image
-signal p_cnt_normal              : unsigned(18 downto 0) := "0000000000000000001" ; 
+signal p_cnt_normal              : unsigned(18 downto 0) := "0000000000000000001" ;
     -- Counter filtered image
-signal p_cnt_filtered              : unsigned(18 downto 0) := "0000000000000000000" ; 
+signal p_cnt_filtered              : unsigned(18 downto 0) := "0000000000000000000" ;
 
 --istogramma pixel
-
     -- columns counter
 signal column_counter : unsigned(9 downto 0) := "0000000010";
     -- lines counter
 signal line_counter : unsigned(8 downto 0) := "000000000";
 
-    -- start l'elaborazione dei pixels dell'immagine
+    -- start l'elaborazione dei delle figura
 signal start : std_logic := '0';
 
-    -- indice delle colonne del riquadro
+    -- indice delle colonne di limite
 signal sx_column : unsigned(9 downto 0) := "0000000000";
 signal dx_column : unsigned(9 downto 0) := "0000010000";
 signal buffered_column : unsigned (9 downto 0);
 
--- indice delle righe del riquadro
+-- indice delle righe di limite
 signal up_line : unsigned(8 downto 0) := "000000000";
 signal down_line : unsigned(8 downto 0) := "000100000";
-
 
 signal partial_vertical_sum_dx : std_logic_vector (14 downto 0);
 signal partial_vertical_sum_sx : std_logic_vector (14 downto 0);
@@ -83,13 +81,13 @@ signal partial_horizontal_sum_it : std_logic_vector (15 downto 0);
 signal partial_horizontal_sum_line : std_logic_vector (15 downto 0);
 
 
-
 begin
 
 --vga signals
 r_out <= pixels(1);
 g_out <= pixels(1);
-b_out <= blue_pixel;
+b_out <= red_pixel;
+
 
 --standard image
 add_r_nfiltered <= TO_UNSIGNED(0,19) when (p_cnt_normal = 640*480 - 1) else p_cnt_normal + 1 ;
@@ -106,14 +104,14 @@ begin
         if clk_divider = 4 - 1 then -- 102Mhz ACLK input clock required
             clk_divider <= (others => '0');  
             if active = '1' then
-                blue_pixel <= in_pixel_nfiltered;
+                red_pixel <= in_pixel_nfiltered;
                 pixels(1) <=  in_pixel_nfiltered;
                 p_cnt_normal <= p_cnt_normal + 1;
                 
-         -- faccio in modo che i pixels in uscita siano quelli dell'immagine filtrata corniciati da tutti pixels neri
+                 -- faccio in modo che i pixels in uscita siano quelli dell'immagine filtrata corniciati da tutti pixels neri
                 if(switch = '1') then
-                    pixels(1) <= "0000";
-                    blue_pixel <= "0000";
+                pixels(1) <= "0000";
+                red_pixel <= "0000";
                 end if;
                 
                 --ridimensionamento per fare in modo che lavori con l'immagine uscente dal filtro
@@ -121,7 +119,7 @@ begin
                     -- faccio in modo che i pixels in uscita siano quelli dell'immagine filtrata
                     if(switch = '1') then
                         pixels(1) <=  in_pixel;
-                        blue_pixel <= in_pixel;
+                        red_pixel <= in_pixel;
                     end if;
                     -- counter
                     p_cnt_filtered <= p_cnt_filtered + 1;
@@ -159,17 +157,16 @@ begin
 
                 partial_vertical_sum(TO_INTEGER(column_counter)) <= std_logic_vector(unsigned(partial_vertical_sum_it) + unsigned(in_pixel));
                 
-                -- sovrascrizione per fare una cornice di blue
+                -- sovrascrizione per fare una cornice di grigio
                 if((column_counter = sx_column or column_counter = dx_column )and (line_counter >= up_line and line_counter <= down_line))then
-                    blue_pixel <= "1111";
+                    red_pixel <= "1111";
                     pixels(1) <= "0000";
                 end if;
                 if((line_counter = up_line or line_counter = down_line )and (column_counter >= sx_column and column_counter <= dx_column))then
-                    blue_pixel <= "1111";
+                    red_pixel <= "1111";
                     pixels(1) <= "0000";
                 end if;                 
             end if; -- active=1
-            
             active_buffered <= active; 
             if(active = '0' and active_buffered = '1' and p_cnt_normal = 0 and line_counter = "000000000")then
                 start <= '1';
@@ -190,14 +187,16 @@ begin
         if(start = '1') then
         -- parte di confronto per trovare i due maggiori nelle somme parziali di riga e colonna. successivamente si ordineneranno effettivamente tra dx e sx e up e down
             --somme verticali
+       
             if(partial_vertical_sum_it > partial_vertical_sum_sx) then
                 sx_column <=  column_counter;
                 partial_vertical_sum_sx <=  partial_vertical_sum_it;
+           
             elsif(partial_vertical_sum_it > partial_vertical_sum_dx) then
                 dx_column <=  column_counter;
                 partial_vertical_sum_dx <= partial_vertical_sum_it;
+                
             end if;
-            
             -- somme orizzontali
             if(partial_horizontal_sum_it > partial_horizontal_sum_up) then
                 up_line <=  line_counter;
@@ -215,6 +214,7 @@ begin
             end if;
             if(line_counter  = 480 -1) then
                 partial_horizontal_sum_it <= partial_horizontal_sum(0);
+
             else
                 partial_horizontal_sum_it <= partial_horizontal_sum(TO_INTEGER(line_counter + 1));
 
@@ -234,7 +234,6 @@ begin
                 partial_vertical_sum  <= (others => (others => '0'));
                 partial_horizontal_sum <= (others => (others => '0'));                    
                 start <= '0';
-                
     -- scambio indici in modo che il minore e il maggiore siano al posto giusto
                 if(sx_column > dx_column)then
                     dx_column <= sx_column +1 ;
