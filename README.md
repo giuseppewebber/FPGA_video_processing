@@ -150,8 +150,8 @@ activate:
 for more detailed instructions follow LINK A GUIDA <br>
  
 ### **Update PL from petalinux workspace**
-- Get the bitstream file (.bit) from Vivado 
-- From a linux environment with Vivado installed run in a command shell <code> $ source <vivado_install_dir>/settings64.sh </code>
+- Get the bitstream file (.bit) from Vivado;
+- From a linux environment with Vivado installed run in a command shell <code> $ source <vivado_install_dir>/settings64.sh </code>;
 - Create a txt file with the following content: 
 ``` txt
 all:
@@ -159,9 +159,9 @@ all:
     ./<Bitstream_name>.bit
 }
 ```
-- Change the name of the file from \<name>.txt to \<name>.bif
-- Run in command shell at the same directory of the \<name>.bif <code> bootgen -image <Input_file>.bif -arch zynq -process_bitstream bin -o ./<Output_file>.bin -w </code> 
-- Copy \<name>.bit.bin file just created in the BOOT partition on the SD card
+- Change the name of the file from \<name>.txt to \<name>.bif;
+- Run in command shell at the same directory of the \<name>.bif <code> bootgen -image <Input_file>.bif -arch zynq -process_bitstream bin -o ./<Output_file>.bin -w </code>;
+- Copy \<name>.bit.bin file just created in the BOOT partition on the SD card;
 - Turn on Petalinux on the FPGA board and run the following commands
 ``` bash
  echo 0 > /sys/class/fpga_manager/fpga0/flags
@@ -170,18 +170,17 @@ all:
  cp /media/design_1_wrapper.bit.bin /lib/firmware/
  echo design_1_wrapper.bit.bin > /sys/class/fpga_manager/fpga0/firmware
 ``` 
+For more information look at this [link](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming)
  
 <a name="vitissw"></a>
 ## **Code for Zynq processor**
-The acquisition and transfer of the image into the PS are handled by the [**webcam_to_PL.c**](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the v4l2 kernel, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the DMA driver.
-The code is run on PetaLinux, a Linux-based operating system for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an abstraction layer that complicates memory address management and communication with the PL.
-The code we implemented takes inspiration from two different examples found online, ***capture.c*** ([link]()) for the proper use of v4l2 and ***dmatest.c*** ([link]()) for the DMA driver, which we have included in this directory. </br>
+The acquisition and transfer of the image into the PS are handled by the [**webcam_to_PL.c**](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the **v4l2 kernel**, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the **DMA driver**.
+The code is run on PetaLinux, a Linux-based OS for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an **abstraction layer** that complicates memory address management and communication with the PL.
+The code we implemented takes inspiration from two different examples found online, ([***capture.c***](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/capture.c.html)) for the proper use of v4l2 and ([***dmatest.c***](https://www.hackster.io/whitney-knitter/introduction-to-using-axi-dma-in-embedded-linux-5264ec#code)) for the DMA driver, which we have included in this directory. </br>
 Next are some sections of code that play an important role in the operation of the system. </br>
 
- 
 ### ***transfer_dma()***
-In this section we deal with data transfer via DMA. Data is divided into N blocks of size equal to ***transfer_lenght***, defined by choosing a value smaller than the max transfer lenght of the DMA (equal to 16384) and that divide the image into an integer N number. 
-N transfers are then performed for each frame.
+In this section we deal with data transfer via DMA. Data is divided into N blocks of size equal to ***transfer_lenght***, defined by choosing a value smaller than the max transfer lenght of the DMA (equal to 16384) and that divide the image into an integer N number. N transfers are then performed for each frame.
 
 ```c
 void transfer_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical_address, unsigned int size){
@@ -207,11 +206,11 @@ void transfer_dma(volatile unsigned int *dma_virtual_addr, unsigned int phisical
     }
 }
 ```
-                  
+             
 ### ***initdma()***
 This function initializes the DMA and takes care of mapping via ***mmap()*** the control registers and the memory area used for data transfer.
 In order to access the physical addresses of the memory, we use /dev/mem to create a ***file descriptor*** that allows the memory to be accessed from PetaLinux.
-We then map the physical addresses of the DMA given in Vivado's ***Address Editor*** so they can be used by our application.
+We then map the physical addresses of the DMA given in **Vivado Address Editor** so they can be used by our application.
 ```c
 void initdma(){
         printf("Running DMA transfer.\n");
@@ -236,7 +235,7 @@ void initdma(){
         write_dma(dma_virtual_addr, MM2S_CONTROL_REGISTER, ENABLE_ALL_IRQ);
 }
 ```
-                 
+    
 ### ***process_image()***
 ***process_image()*** is the main function for code operation. In this part of the code we copy data from the webcam registers, previously mapped in memory, to the memory locations used for transfer mapped in the ***init_dma()*** function. 
 We point out the use of the ***volatile*** attribute to prevent the compiler from optimizing the use of memory allocated for saving the image.
@@ -253,7 +252,7 @@ static void process_image(volatile const void *p, int size){
 ```
  
 ### Debug
-Code development for video handling was done in Vitis IDE after building a Linux platform based on our architecture, allowing code to be loaded on the board and debugged. A guide on how to build the platform and debug is provided at the following
+Code development for video handling was done in Vitis IDE after building a Linux platform based on our architecture, allowing code to be **loaded on the board and debugged**. A guide on how to build the platform and debug is provided at this
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
@@ -274,4 +273,3 @@ Shraddha Y. Swami, Jayashree S. Awati, (2017) " Implementation of Edge Detection
 - [Petalinux Guide - 1](https://medium.com/developments-and-implementations-on-zynq-7000-ap/install-ubuntu-16-04-lts-on-zynq-zc702-using-petalinux-2016-4-e1da902eaff7)
 - [Petalinux Guide - 2](https://medium.com/developments-and-implementations-on-zynq-7000-ap/interfacing-a-usb-webcam-and-enable-usb-tethering-on-zynq-7000-ap-soc-running-linux-1ba6d836749d)
 - [Petalinux Guide - 3](https://enes-goktas.medium.com/install-and-run-ubuntu-20-04-on-zynq-7000-soc-zc706-evaluation-board-c5fef2423c98)
-- [Load PL from Petalinux Workspace](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming)
