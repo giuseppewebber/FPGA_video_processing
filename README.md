@@ -77,9 +77,8 @@ This block handles the format of the incoming data from the DMA. On input we get
 
 ### **Sobel filter**
 This is the block designated to implement the Sobel filter. Two **3×3 kernels**, or convolution matrices, are applied to the original image to compute approximate values of the **horizontal and vertical gradients**. From the original image, 2 rows are stored in 2 arrays, and a third array is used to store an additional 3 pixels. In this way, by simply shifting the three arrays by one pixel, one always manages to have in the first three array positions the correct pixels on which to apply the kernel. Again the image is stored in a BRAM for the next step.
-<img src="./readm_img/shift.png" width = 600>
-![3x3](readm_img/3x3.png = 50x)  
-![Diagram](readm_img/shift.png | width = 100) </br>
+<img src="./readm_img/shift.png" width = 500> <img src="./readm_img/3x3.png" width = 500>
+
 <!-- IMMAGINE ARRAY SOBEL-->
 
 ### **Frame generator block**
