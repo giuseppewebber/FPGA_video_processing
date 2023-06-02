@@ -40,7 +40,7 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 The system is composed of three main parts: Zedboard, webcam and monitor. These parts are connected all together to perform video capturing, filtering and show the results on a monitor via VGA. A switch, the first on the right of the FPGA board, is used to choose which image to display, between the original greyscale image and the filtered image. </br>
 
 <p align="center">
-  <img src="./readm_img/HighLevelDescription.png" width = 500>
+  <img src="./readm_img/HighLevelDescription.png">
 </p>
 
 
@@ -64,7 +64,7 @@ The following part explains our steps to develop the system from scratch.
 <a name="vivadohw"></a>
 ## **Vivado Hardware Design**
 <p align="center">
-  <img src="./readm_img/Block_Diagram.png" width = 500>
+  <img src="./readm_img/Block_Diagram.png" >
 </p>
 The diagram shows the architecture we developed, where we can identify the main blocks:
 - **ZYNQ processor** (*processing_system7_0*);
