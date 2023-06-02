@@ -69,8 +69,8 @@ The following part explains our steps to develop the system from scratch.
 The diagram shows the architecture we developed, where we can identify the main blocks:
 - **ZYNQ processor** (*processing_system7_0*);
 - **Axi DMA** (*axi_dma_0*);
-- image processing block composed of **receive dma** (*recive_dma_0*) and **Sobel filter** (*SobelFilter_0*); 
-- image visualization block composed of **frame generator** (*frame_generator_0*) and **VGA driver** (*vga_0*);
+- image processing block composed of **receive dma** ([*recive_dma_0*](vivado_files/Receive_dma.vhd)) and **Sobel filter** ([*SobelFilter_0*](vivado_files/SobelFilter.vhd)); 
+- image visualization block composed of **frame generator** ([*frame_generator_0*](vivado_files/Frame_generator.vhd)) and **VGA driver** (*vga_0*);
 - **memory blocks** (*blk_mem_gen_0, blk_mem_gen_1, blk_mem_gen_2*).
 
 The data flow starts from the *processor* which via embedded code handles the DMA and transfers the image via AXI-Stream to the *receive dma* block. Here the data is converted from the **YUY2 webcam format** to 4 bits greyscale. Then the image is saved and passed to the next block that implements the **Sobel filter**, the image processing core that through an algorithm highlights the edges of a figure within the image. Finally, the *frame generator* block is responsible for creating the frame and handling synchronization with the *VGA driver* after applying a frame that indicates the recognition of a figure. </br>
@@ -88,10 +88,6 @@ This is the block designated to implement the Sobel filter. Two **3×3 kernels**
 <p align="center">
   <img src="./readm_img/shift.png" width = 500>
 </p>
-
-
-
-<!-- IMMAGINE ARRAY SOBEL-->
 
 ### **Frame generator block**
 In this block the **partial sums** of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box. Timing for frame generation in sync with the VGA driver is also handled, which using the *on state* signal enables or disables image transmission.
