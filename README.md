@@ -174,7 +174,7 @@ For more information look at this [link](https://xilinx-wiki.atlassian.net/wiki/
  
 <a name="vitissw"></a>
 ## **Code for Zynq processor**
-The acquisition and transfer of the image into the PS are handled by the [**webcam_to_PL.c**](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the **v4l2 kernel**, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the **DMA driver**.
+The acquisition and transfer of the image into the PS are handled by the [***webcam_to_PL.c***](https://github.com/giuseppewebber/FPGA_video_processing/blob/main/c_code/webcam_to_PL.c) code. Through the use of the **v4l2 kernel**, the processor interfaces with the webcam by managing its registers and buffers and then transfers the acquired data to the PL by driving the **DMA driver**.
 The code is run on PetaLinux, a Linux-based OS for embedded systems, which is necessary to take advantage of the capabilities of the v4l2 kernel. However, this involves adding an **abstraction layer** that complicates memory address management and communication with the PL.
 The code we implemented takes inspiration from two different examples found online, [***capture.c***](https://www.kernel.org/doc/html/v4.9/media/uapi/v4l/capture.c.html) for the proper use of v4l2 and [***dmatest.c***](https://www.hackster.io/whitney-knitter/introduction-to-using-axi-dma-in-embedded-linux-5264ec#code) for the DMA driver, which we have included in this directory. </br>
 Next are some sections of code that play an important role in the operation of the system. </br>
