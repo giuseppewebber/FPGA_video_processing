@@ -39,7 +39,10 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 # **Project Layout**
 The system is composed of three main parts: Zedboard, webcam and monitor. These parts are connected all together to perform video capturing, filtering and show the results on a monitor via VGA. A switch, the first on the right of the FPGA board, is used to choose which image to display, between the original greyscale image and the filtered image. </br>
 
-![Diagram](readm_img/HighLevelDescription.png) </br>
+<p align="center">
+  <img src="./readm_img/HighLevelDescription.png" width = 500>
+</p>
+
 
 The project layout is pretty straightforward: webcam data is captured by the processor through the v4l2 kernel running on PetaLinux. Data saved in memory is then transferred to Programmable Logic (PL) through the use of DMA on an AXI-Stream bus. Finally, the FPGA architecture processes the image, managing the format and applying a Sobel filter to then drive the VGA to display the video. </br>
 
@@ -60,7 +63,9 @@ The following steps are needed to make the system work:
 The following part explains our steps to develop the system from scratch.
 <a name="vivadohw"></a>
 ## **Vivado Hardware Design**
-![Diagram](readm_img/Block_Diagram.png) </br>
+<p align="center">
+  <img src="./readm_img/Block_Diagram.png" width = 500>
+</p>
 The diagram shows the architecture we developed, where we can identify the main blocks:
 - **ZYNQ processor** (*processing_system7_0*);
 - **Axi DMA** (*axi_dma_0*);
@@ -78,11 +83,12 @@ This block handles the format of the incoming data from the DMA. On input we get
 ### **Sobel filter**
 This is the block designated to implement the Sobel filter. Two **3×3 kernels**, or convolution matrices, are applied to the original image to compute approximate values of the **horizontal and vertical gradients**. From the original image, 2 rows are stored in 2 arrays, and a third array is used to store an additional 3 pixels. In this way, by simply shifting the three arrays by one pixel, one always manages to have in the first three array positions the correct pixels on which to apply the kernel. Again the image is stored in a BRAM for the next step.
 <p align="center">
-  <img src="./readm_img/shift.png" width = 500>
-</p>
-<p align="center">
   <img src="./readm_img/3x3.png" width = 500>
 </p>
+<p align="center">
+  <img src="./readm_img/shift.png" width = 500>
+</p>
+
 
 
 <!-- IMMAGINE ARRAY SOBEL-->
