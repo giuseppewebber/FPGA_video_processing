@@ -99,53 +99,53 @@ These steps must be performed on a Linux (we used Ubuntu 16.04) computer.
 - execute <code>petalinux-config</code>;
   
 At this point a window will pop-up to configure the project. Make sure to select the following options:
-- Image packaging configuration -> root file system type -> Ext4(SD)
-- Yocto settings -> Yocto board settings -> yocto borad name -> "zedboard"
+  - Image packaging configuration -> root file system type -> Ext4(SD)
+  - Yocto settings -> Yocto board settings -> yocto borad name -> "zedboard"
 
 Save the selections and exit.  
 Now execute <code>petalinux-config -c kernel</code> and make sure to activate the following options. Some of these options are not strictly necessary, but have been included to have some extra features that may come in handy in later stages.
 
 Under **Device drivers -> USB support** activate:
-- USB support -> USB ULPI PHY interface support
-- USB support -> EHCI HCD (USB 2.0) support
-- USB support -> ChipIdea Highspeed Dual Role Controller
-- USB support -> ChipIdea device controller
-- USB support -> ChipIdea host controller
-- USB support -> USB Gadget Support
+  - USB support -> USB ULPI PHY interface support
+  - USB support -> EHCI HCD (USB 2.0) support
+  - USB support -> ChipIdea Highspeed Dual Role Controller
+  - USB support -> ChipIdea device controller
+  - USB support -> ChipIdea host controller
+  - USB support -> USB Gadget Support
   
 Under **USB support -> USB Gadget Support**:
-- USB Gadget Support -> USB Gadget functions configurable through configfs (M)
-- USB Gadget Support -> Network control model
-- USB Gadget Support -> Mass Storage
-- USB Gadget Support -> USB webcam function
+  - USB Gadget Support -> USB Gadget functions configurable through configfs (M)
+  - USB Gadget Support -> Network control model
+  - USB Gadget Support -> Mass Storage
+  - USB Gadget Support -> USB webcam function
   
 Under **USB Gadget Support -> USB precomposed configurations**:
-- USB precomposed configurations -> Gadget Zero (M)
-- USB precomposed configurations -> Network control model
-- USB precomposed configurations -> Mass storage (M)
-- USB precomposed configurations -> Multifunction composit gadget (M)
-- USB precomposed configurations ->  RNDIS + CDC serial + storage configuration
-- USB precomposed configurations ->  CDC ethernet + CDC serial + Storage configuration
-- USB precomposed configurations ->  USB Webcam Gadget (M)
+  - USB precomposed configurations -> Gadget Zero (M)
+  - USB precomposed configurations -> Network control model
+  - USB precomposed configurations -> Mass storage (M)
+  - USB precomposed configurations -> Multifunction composit gadget (M)
+  - USB precomposed configurations ->  RNDIS + CDC serial + storage configuration
+  - USB precomposed configurations ->  CDC ethernet + CDC serial + Storage configuration
+  - USB precomposed configurations ->  USB Webcam Gadget (M)
  
 And more in:
-- Device Drivers -> Multimedia Support  -> Media Core Support -> Video4linux core and -> Media control API
-- Device Drivers -> Multimedia Support -> video4linux options -> V4l2 sub-device userspace API
-- Device Drivers -> Multimedia Support -> media drivers -> media USB adapters -> USB video Class (M) and UVC input events device support
-- Device Drivers -> Multimedia Support -> media drivers -> media USB adapters -> V4l platform devices
-- Device Drivers -> Graphics Support ->  Xilinx DRM KMS Driver
-- Device Drivers -> FPGA Configuration Framework -> Xilinx Zynq FPGA
+  - Device Drivers -> Multimedia Support  -> Media Core Support -> Video4linux core and -> Media control API
+  - Device Drivers -> Multimedia Support -> video4linux options -> V4l2 sub-device userspace API
+  - Device Drivers -> Multimedia Support -> media drivers -> media USB adapters -> USB video Class (M) and UVC input events device support
+  - Device Drivers -> Multimedia Support -> media drivers -> media USB adapters -> V4l platform devices
+  - Device Drivers -> Graphics Support ->  Xilinx DRM KMS Driver
+  - Device Drivers -> FPGA Configuration Framework -> Xilinx Zynq FPGA
  
 Now execute <code>petalinux-config -c rootfs</code> and select:
-- Filesystem Packages -> multimedia -> gstreamer1.0
-- Filesystem Packages -> x11 -> base -> libdrm
-- Filesystem Packages -> x11 -> base -> xserver-xorg
-- Filesystem Packages -> x11 -> base -> xserver-xorg
-- Filesystem Packages -> x11 -> wm -> matchbox-desktop
-- Filesystem Packages -> x11 -> wm -> matchbox-wm
-- Petalinux Package Groups -> packagegroup-petalinux-opencv -> all options
-- Petalinux Package Groups -> packagegroup-petalinux-v4lutils -> all options
-- Petalinux Package Groups -> packagegroup-petalinux-x11 -> all options
+  - Filesystem Packages -> multimedia -> gstreamer1.0
+  - Filesystem Packages -> x11 -> base -> libdrm
+  - Filesystem Packages -> x11 -> base -> xserver-xorg
+  - Filesystem Packages -> x11 -> base -> xserver-xorg
+  - Filesystem Packages -> x11 -> wm -> matchbox-desktop
+  - Filesystem Packages -> x11 -> wm -> matchbox-wm
+  - Petalinux Package Groups -> packagegroup-petalinux-opencv -> all options
+  - Petalinux Package Groups -> packagegroup-petalinux-v4lutils -> all options
+  - Petalinux Package Groups -> packagegroup-petalinux-x11 -> all options
 
 Now we are ready to build the project: 
 - generate the PetaLinux image with <code>petalinux-build -c device-tree</code> and <code>petalinux-build</code>;
