@@ -136,7 +136,7 @@ And more in:
 - Device Drivers -> Graphics Support ->  Xilinx DRM KMS Driver
 - Device Drivers -> FPGA Configuration Framework -> Xilinx Zynq FPGA
  
-Now execute <code>petalinux-config -c rootfs</code> for further options:
+Now execute <code>petalinux-config -c rootfs</code> and select:
 - Filesystem Packages -> multimedia -> gstreamer1.0
 - Filesystem Packages -> x11 -> base -> libdrm
 - Filesystem Packages -> x11 -> base -> xserver-xorg
