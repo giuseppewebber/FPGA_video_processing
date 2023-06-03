@@ -251,12 +251,12 @@ Code development for video handling was done in Vitis IDE after building a Linux
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
-# Video #da finire
+<!-- # Video #da finire -->
 
 <a name="teamlist"></a>
 ## Team Members
- Giovanni Solfa
- Giuseppe Webber
+ - Giovanni Solfa
+ - Giuseppe Webber
 
 <a name="referencelist"></a>
 # References
