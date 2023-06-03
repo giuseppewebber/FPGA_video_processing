@@ -142,7 +142,7 @@ These steps must be performed on a Linux (we used Ubuntu 16.04) computer.
 - finally generate the PetaLinux image with <code>petalinux-build -c device-tree</code> and <code>petalinux-build</code>;
 - use <code>petalinux-package --boot --format BIN --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/BOOT.bit --u-boot</code> to generate the BOOT.BIN file.
   
-All files needed to boot PetaLinux, to be copied inside the SD card as explained in the Getting Started section, can be found in <code>\<project path>/images/linux<\code>.
+All files needed to boot PetaLinux, to be copied inside the SD card as explained in the Getting Started section, can be found in <code>\<project path>/images/linux</code>.
  
 ### **Update PL from petalinux workspace**
 - Get the bitstream file (.bit) from Vivado;
