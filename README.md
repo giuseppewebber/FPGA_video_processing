@@ -63,9 +63,8 @@ The following steps are needed to make the system work:
 The following part explains our steps to develop the system from scratch.
 <a name="vivadohw"></a>
 ## **Vivado Hardware Design**
-<p align="center">
-  <img src="./readm_img/Block_Diagram.png" >
-</p>
+<p align="center"><img src="./readm_img/Block_Diagram.png"></p>
+
 The diagram shows the architecture we developed, where we can identify the main blocks:
 - **ZYNQ processor** (*processing_system7_0*);
 - **Axi DMA** (*axi_dma_0*);
