@@ -112,12 +112,14 @@ Under **Device drivers -> USB support** activate:
 - USB support -> ChipIdea device controller
 - USB support -> ChipIdea host controller
 - USB support -> USB Gadget Support
-  Under USB Gadget Support:
+  
+Under **USB support -> USB Gadget Support**:
 - USB Gadget Support -> USB Gadget functions configurable through configfs (M)
 - USB Gadget Support -> Network control model
 - USB Gadget Support -> Mass Storage
 - USB Gadget Support -> USB webcam function
-  Under USB Gadget Support -> USB precomposed configurations:
+  
+Under **USB Gadget Support -> USB precomposed configurations**:
 - USB precomposed configurations -> Gadget Zero (M)
 - USB precomposed configurations -> Network control model
 - USB precomposed configurations -> Mass storage (M)
@@ -125,7 +127,8 @@ Under **Device drivers -> USB support** activate:
 - USB precomposed configurations ->  RNDIS + CDC serial + storage configuration
 - USB precomposed configurations ->  CDC ethernet + CDC serial + Storage configuration
 - USB precomposed configurations ->  USB Webcam Gadget (M)
-  And more in:
+ 
+And more in:
 - Device Drivers -> Multimedia Support  -> Media Core Support -> Video4linux core and -> Media control API
 - Device Drivers -> Multimedia Support -> video4linux options -> V4l2 sub-device userspace API
 - Device Drivers -> Multimedia Support -> media drivers -> media USB adapters -> USB video Class (M) and UVC input events device support
