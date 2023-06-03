@@ -144,7 +144,7 @@ These steps must be performed on a Linux (we used Ubuntu 16.04) computer.
   
 All files needed to boot PetaLinux, to be copied inside the SD card as explained in the Getting Started section, can be found in <code>\<project path>/images/linux</code>.
  
-### **Update PL from petalinux workspace**
+### **Update PL from PetaLinux at run time**
 - Get the bitstream file (.bit) from Vivado;
 - From a linux environment with Vivado installed run in a command shell <code> $ source <vivado_install_dir>/settings64.sh </code>;
 - Create a txt file with the following content: 
