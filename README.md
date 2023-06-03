@@ -101,6 +101,7 @@ These steps must be performed on a Linux (we used Ubuntu 16.04) computer.
 At this point a window will pop-up to configure the project. Make sure to select the following options:
 - Image packaging configuration -> root file system type -> Ext4(SD)
 - Yocto settings -> Yocto board settings -> yocto borad name -> "zedboard"
+
 Save the selections and exit.  
 Now execute <code>petalinux-config -c kernel</code> and make sure to activate the following options. Some of these options are not strictly necessary, but have been included to have some extra features that may come in handy in later stages.
 
