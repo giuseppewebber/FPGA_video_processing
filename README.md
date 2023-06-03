@@ -102,7 +102,7 @@ At this point a window will pop-up to configure the project. Make sure to select
 - Image packaging configuration -> root file system type -> Ext4(SD)
 - Yocto settings -> Yocto board settings -> yocto borad name -> "zedboard"
 Save the selections and exit.  
-Now execute <code>petalinux-config -c kernel<\code> and make sure to activate the following options. Some of these options are not strictly necessary, but have been included to have some extra features that may come in handy in later stages.
+Now execute <code>petalinux-config -c kernel</code> and make sure to activate the following options. Some of these options are not strictly necessary, but have been included to have some extra features that may come in handy in later stages.
 
 Under **Device drivers -> USB support** activate:
 - USB support -> USB ULPI PHY interface support
@@ -132,7 +132,7 @@ Under **Device drivers -> USB support** activate:
 - Device Drivers -> Graphics Support ->  Xilinx DRM KMS Driver
 - Device Drivers -> FPGA Configuration Framework -> Xilinx Zynq FPGA
  
-Now execute <code>petalinux-config -c rootfs<\code> for further options:
+Now execute <code>petalinux-config -c rootfs</code> for further options:
 - Filesystem Packages -> multimedia -> gstreamer1.0
 - Filesystem Packages -> x11 -> base -> libdrm
 - Filesystem Packages -> x11 -> base -> xserver-xorg
