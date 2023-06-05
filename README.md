@@ -47,7 +47,7 @@ The project layout is pretty straightforward: webcam data is captured by the pro
 # **Getting Started**
 The following steps are needed to make the system work:
 - with a tool like gparted, divide the SD card in three different partitions: a 4MB free space at the beginning, a 500MB FAT32 partition as BOOT and the remaining part in ext4 as rootfs;
-- from the petalinux_files/ directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing) unzip the rootfs.tar.gz in the rootfs partition;
+- from the [*petalinux_files*](petalinux_files/) directory, copy the BOOT.BIN, boot.scr and image.ub files in the BOOT partition and from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing) unzip the rootfs.tar.gz in the rootfs partition;
 - insert the SD card in the Zedboard, and connect it wih a computer via the COM connection;
 - connect the webcam and the monitor to the Zedboard;
 - in the PetaLinux terminal run the commands <code>sh load_hw.sh</code> and <code>sh start.sh</code> and the system should start;
@@ -84,7 +84,7 @@ This is the block designated to implement the Sobel filter. Two **3×3 kernels**
 ### **Frame generator block**
 In this block the **partial sums** of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box. Timing for frame generation in sync with the VGA driver is also handled, which using the *on state* signal enables or disables image transmission.
 
-The complete Vivado project can be downloaded from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing), or recreated importing in a new Vivado project the .xci and .bd files, that can be found in the vivado_files/ directory.
+The complete Vivado project can be downloaded from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing), or recreated importing in a new Vivado project the .xci and .bd files, that can be found in the [*vivado_files*](vivado_files/) directory.
 
 <a name="petalinux"></a>
 ## **PetaLinux build**
