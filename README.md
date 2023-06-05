@@ -248,7 +248,7 @@ Code development for video handling was done in Vitis IDE after building a Linux
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
- <p align="center"><img src="./readm_img/Video_demo.mp4"></p>
+![video](./readm_img/Video_demo.mp4)
 
 <a name="teamlist"></a>
 ## Team Members
