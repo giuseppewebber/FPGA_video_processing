@@ -248,6 +248,7 @@ Code development for video handling was done in Vitis IDE after building a Linux
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
+ ![video](https://github.com/giuseppewebber/FPGA_video_processing/assets/81512171/2f6d1265-4795-45f8-b30d-7e431dbe6859)
 <p align="center"><img src="https://github.com/giuseppewebber/FPGA_video_processing/assets/81512171/2f6d1265-4795-45f8-b30d-7e431dbe6859"> </p>
 
 <a name="teamlist"></a>
