@@ -1,10 +1,6 @@
 # <strong> FPGA Video Processing </strong>
 Xilinx Zedboard-based system for video acquisition from a USB webcam using Petalinux. PL implementation of video processing with Sobel filter and VGA video output.
 
-
-https://github.com/giuseppewebber/FPGA_video_processing/assets/81512171/2f6d1265-4795-45f8-b30d-7e431dbe6859
-
-
 <a name="index"></a>
 # <strong> Table of Contents </strong>
 1. <a href="#requirementslist">Requirements</a></br>
@@ -252,7 +248,7 @@ Code development for video handling was done in Vitis IDE after building a Linux
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
-![video](./readm_img/Video_demo.mp4)
+<p align="center"> https://github.com/giuseppewebber/FPGA_video_processing/assets/81512171/2f6d1265-4795-45f8-b30d-7e431dbe6859 </p>
 
 <a name="teamlist"></a>
 ## Team Members
