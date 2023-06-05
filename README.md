@@ -249,7 +249,7 @@ Code development for video handling was done in Vitis IDE after building a Linux
  
 <a name="video"></a>
 ## Video Demo
-https://github.com/giuseppewebber/FPGA_video_processing/assets/81512171/2f6d1265-4795-45f8-b30d-7e431dbe6859
+https://github.com/giuseppewebber/FPGA_video_processing/blob/main/readm_img/Video_demo.mp4
 
 <a name="teamlist"></a>
 ## Team Members
