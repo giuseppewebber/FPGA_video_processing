@@ -84,6 +84,8 @@ This is the block designated to implement the Sobel filter. Two **3×3 kernels**
 ### **Frame generator block**
 In this block the **partial sums** of the filtered image are calculated and used to estimate the box in which the figure is contained. The partial sums of each row and column are saved in two arrays. The index of the two largest values in each array will indicate the boundary rows and columns of the figure, on which to then plot the box. Timing for frame generation in sync with the VGA driver is also handled, which using the *on state* signal enables or disables image transmission.
 
+The complete Vivado project can be downloaded from this [link](https://drive.google.com/drive/folders/1RzFJCgQ1HQrXdmVkEm8N4Z-CmbkjK4yV?usp=sharing).
+
 <a name="petalinux"></a>
 ## **PetaLinux build**
 The following section shows the steps we took to create a PetaLinux image with the kernels and other options needed to run the project.
