@@ -39,10 +39,7 @@ Xilinx Zedboard-based system for video acquisition from a USB webcam using Petal
 # **Project Layout**
 The system is composed of three main parts: Zedboard, webcam and monitor. These parts are connected all together to perform video capturing, filtering and show the results on a monitor via VGA. A switch, the first on the right of the FPGA board, is used to choose which image to display, between the original greyscale image and the filtered image. </br>
 
-<p align="center">
-  <img src="./readm_img/HighLevelDescription.png">
-</p>
-
+<p align="center"><img src="./readm_img/HighLevelDescription.png"></p>
 
 The project layout is pretty straightforward: webcam data is captured by the processor through the v4l2 kernel running on PetaLinux. Data saved in memory is then transferred to Programmable Logic (PL) through the use of DMA on an AXI-Stream bus. Finally, the FPGA architecture processes the image, managing the format and applying a Sobel filter to then drive the VGA to display the video. </br>
 
@@ -56,7 +53,7 @@ The following steps are needed to make the system work:
 - in the PetaLinux terminal run the commands <code>sh load_hw.sh</code> and <code>sh start.sh</code> and the system should start;
 - you might have to use the switch on the left of the Zedboard to set the right video visualization, depending on the video encoding of your webcam.
 
-<!-- AGGIUNGERE IMMAGINE COLLEGAMENTI SCHEDA -->
+ <p align="center"><img src="./readm_img/Board_setup.jpg"></p>
 
 <a name="projectsteps"></a>
 # **Project steps**
@@ -251,12 +248,14 @@ Code development for video handling was done in Vitis IDE after building a Linux
 [link](https://www.xilinx.com/video/software/building-linux-application-vitis.html#links-collapse).
  
 <a name="video"></a>
-<!-- # Video #da finire -->
+ <p align="center"><img src="./readm_img/Video_demo.mp4"></p>
 
 <a name="teamlist"></a>
 ## Team Members
  - Giovanni Solfa
  - Giuseppe Webber
+ 
+<p align="center"><img src="./readm_img/Team_members.jpg"></p>
 
 <a name="referencelist"></a>
 # References
