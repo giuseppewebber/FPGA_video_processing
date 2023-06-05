@@ -53,7 +53,7 @@ The following steps are needed to make the system work:
 - in the PetaLinux terminal run the commands <code>sh load_hw.sh</code> and <code>sh start.sh</code> and the system should start;
 - you might have to use the switch on the left of the Zedboard to set the right video visualization, depending on the video encoding of your webcam.
 
- <p align="center"><img src="./readm_img/Board_setup.jpg"></p>
+ <p align="center"><img src="./readm_img/Board_setup.jpg"  width = 500></p>
 
 <a name="projectsteps"></a>
 # **Project steps**
@@ -255,7 +255,7 @@ Code development for video handling was done in Vitis IDE after building a Linux
  - Giovanni Solfa
  - Giuseppe Webber
  
-<p align="center"><img src="./readm_img/Team_members.jpg"></p>
+<p align="center"><img src="./readm_img/Team_members.jpg" width = 500></p>
 
 <a name="referencelist"></a>
 # References
